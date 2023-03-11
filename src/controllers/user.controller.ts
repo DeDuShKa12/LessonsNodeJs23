@@ -45,6 +45,25 @@ class UserController{
             next(e);
         }
     }
+    public async update(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response<ICommonResponse<IUser>>> {
+        try {
+            const { userId } = req.params;
+            const user = req.body;
+
+            const updatedUser = userService.update(userId, user)
+
+            return res.status(200).json({
+                message: "User updated",
+                data: updatedUser,
+            });
+        } catch (e) {
+            next(e);
+        }
+    }
 }
 
 export const userController = new UserController()

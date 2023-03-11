@@ -1,4 +1,4 @@
-import {IUser} from "../types/user.types";
+import {IUser, IUserUpdate} from "../types/user.types";
 import {User} from "../models/User.model";
 import {ApiError} from "../errors/api.error";
 
@@ -20,6 +20,13 @@ class UserService {
     public async create(body: IUser):Promise<void>{
         try {
            await User.create(body)
+        }catch (e) {
+            throw new ApiError(e.message, e.status)
+        }
+    }
+    public async update(userId: string, user: IUserUpdate):Promise<void>{
+        try {
+            await User.updateOne({ _id: userId }, { ...user })
         }catch (e) {
             throw new ApiError(e.message, e.status)
         }

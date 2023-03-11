@@ -10,3 +10,8 @@ export interface IUser {
     password: string;
     gender: string;
 }
+
+export interface IUserUpdate {
+    name: string;
+    gender: string;
+}
