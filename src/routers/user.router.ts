@@ -6,12 +6,12 @@ const router = Router();
 
 router.get("/", userController.getAll);
 
-router.get("/:userId", userMiddleware.getByIdAndThrow, userController.getById);
+router.post("/", userMiddleware.isValidCreate, userController.create);
 
-router.post("/", userController.create);
+router.get("/:userId", userMiddleware.isUserIdValid, userMiddleware.getByIdOrThrow, userController.getById);
 
-router.put("/:userId", userController.update);
+router.put("/:userId",userMiddleware.isUserIdValid, userMiddleware.isValidUpdate, userController.update);
 
-router.delete("/:userId", userController.delete)
+router.delete("/:userId", userMiddleware.isUserIdValid, userController.delete)
 
 export const userRouter = router;
