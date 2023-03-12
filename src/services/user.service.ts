@@ -31,6 +31,13 @@ class UserService {
             throw new ApiError(e.message, e.status)
         }
     }
+    public async delete(id: string):Promise<void>{
+        try {
+            await User.deleteOne({ _id: id })
+        }catch (e) {
+            throw new ApiError(e.message, e.status)
+        }
+    }
 }
 
 export const userService = new UserService();

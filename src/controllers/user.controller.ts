@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import { IUser } from "../types/user.types";
 import {userService} from "../services/user.service";
-import {ICommonResponse} from "../types/common.types";
+import {ICommonResponse, IMessage} from "../types/common.types";
 
 class UserController{
     public async getAll(
@@ -59,6 +59,23 @@ class UserController{
             return res.status(200).json({
                 message: "User updated",
                 data: updatedUser,
+            });
+        } catch (e) {
+            next(e);
+        }
+    }
+    public async delete(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response<IMessage>> {
+        try {
+            const { userId } = req.params;
+
+            await userService.delete(userId)
+
+            return res.status(200).json({
+                message: "User deleted",
             });
         } catch (e) {
             next(e);
