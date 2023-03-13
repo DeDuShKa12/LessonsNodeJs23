@@ -1,5 +1,5 @@
 import Joi from "joi";
-import {EGenders} from "../types/user.types";
+import {EGenders} from "../types";
 import {regexConstants} from "../constants";
 
 export class UserValidator {

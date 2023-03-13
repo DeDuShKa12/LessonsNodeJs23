@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
-import { IUser } from "../types/user.types";
-import {userService} from "../services/user.service";
-import {ICommonResponse, IMessage} from "../types/common.types";
+import { IUser } from "../types";
+import {userService} from "../services";
+import {ICommonResponse, IMessage} from "../types";
 
 class UserController{
     public async getAll(
